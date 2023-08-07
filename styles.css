@@ -1,0 +1,22 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.rotating-bar {
+  width: 200px;
+  height: 20px;
+  background-color: #3498db;
+  transform-origin: left center;
+  transform: rotate(0deg);
+  position: relative;
+}
+
+.bar {
+  width: 100%;
+  height: 100%;
+  background-color: #e74c3c;
+}
