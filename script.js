@@ -15,6 +15,8 @@ let gridSize = 15; // Aangepaste gridgrootte voor betere zichtbaarheid
 let score = 0;
 let paused = false; // Definieer de variabele 'paused'
 
+let gameInterval; // Variabele om de game loop bij te houden
+
 document.addEventListener('keydown', (event) => {
   switch (event.key) {
     case 'ArrowUp':
@@ -36,7 +38,9 @@ document.addEventListener('keydown', (event) => {
   }
 });
 
+
 function updateGameArea() {
+    if (paused) return;
     snakeX += directionX;
     snakeY += directionY;
   
@@ -94,24 +98,21 @@ function updateGameArea() {
   }
   
 
+function generateFood() {
+  foodX = Math.floor(Math.random() * gridSize);
+  foodY = Math.floor(Math.random() * gridSize);
+  foodElement.style.left = foodX * 20 + 'px';
+  foodElement.style.top = foodY * 20 + 'px';
+}
 
-  function generateFood() {
-    foodX = Math.floor(Math.random() * gridSize);
-    foodY = Math.floor(Math.random() * gridSize);
-    foodElement.style.left = foodX * 20 + 'px';
-    foodElement.style.top = foodY * 20 + 'px';
-  }
-  
-  generateFood();
-  setInterval(updateGameArea, 100);
+generateFood();
+setInterval(updateGameArea, 200);
 
 // ... je bestaande code ...
 
 // Voeg event listeners toe voor toetsen en knoppen
-document.getElementById('button-left').addEventListener('click', () => {
-    console.log('Button Left clicked');
-    changeDirection(-1, 0);
-});
+window.addEventListener('keydown', handleKeyPress);
+document.getElementById('button-left').addEventListener('click', () => changeDirection(-1, 0));
 document.getElementById('button-right').addEventListener('click', () => changeDirection(1, 0));
 document.getElementById('button-up').addEventListener('click', () => changeDirection(0, -1));
 document.getElementById('button-down').addEventListener('click', () => changeDirection(0, 1));
@@ -128,21 +129,27 @@ function changeDirection(newDirectionX, newDirectionY) {
 
 // Functie om het spel te pauzeren of hervatten
 function togglePause() {
-  paused = !paused;
-  if (paused) {
-    // Toon een pauze-scherm
-    const pauseScreen = document.createElement('div');
-    pauseScreen.id = 'pause-screen';
-    pauseScreen.textContent = 'PAUZE';
-    document.body.appendChild(pauseScreen);
-  } else {
-    // Verwijder het pauze-scherm
-    const pauseScreen = document.getElementById('pause-screen');
-    if (pauseScreen) {
-      pauseScreen.parentNode.removeChild(pauseScreen);
+    paused = !paused;
+    if (paused) {
+      // Toon een pauze-scherm
+      const pauseScreen = document.createElement('div');
+      pauseScreen.id = 'pause-screen';
+      pauseScreen.textContent = 'PAUZE';
+      document.body.appendChild(pauseScreen);
+  
+      // Stop de game loop als het spel is gepauzeerd
+      clearInterval(gameInterval);
+    } else {
+      // Verwijder het pauze-scherm
+      const pauseScreen = document.getElementById('pause-screen');
+      if (pauseScreen) {
+        pauseScreen.parentNode.removeChild(pauseScreen);
+      }
+  
+      // Start de game loop opnieuw als het spel wordt hervat
+      gameInterval = setInterval(updateGameArea, 10000000);
     }
   }
-}
 
 // Functie om toetsaanslagen te verwerken
 function handleKeyPress(event) {
@@ -165,4 +172,5 @@ function handleKeyPress(event) {
       break;
   }
 }
-window.addEventListener('keydown', handleKeyPress);
+
+// ... de rest van je code ...
