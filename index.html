@@ -1,15 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Orientatie Balk</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Snake Game</title>
 </head>
 <body>
-    <div class="rotating-bar">
-        <div class="bar"></div>
-    </div>
-    <script src="script.js"></script>
+  <div id="game-container">
+    <div id="snake"></div>
+    <div id="food"></div>
+  </div>
+  <div id="score">Score: <span id="score-value">0</span></div>
+  
+  <div class="buttons">
+    <button id="button-up">⬆️</button>
+    <button id="button-left">⬅️</button>
+    <button id="button-right">➡️</button>
+    <button id="button-down">⬇️</button>
+    <button id="button-pause" class="pause-button">||</button>
+  </div>
+  
+  <script src="script.js"></script>
 </body>
 </html>
