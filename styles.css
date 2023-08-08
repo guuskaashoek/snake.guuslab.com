@@ -2,6 +2,7 @@
   --main: #ffffff;
   --font: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
+
 @media (prefers-color-scheme: dark) {
   :root {
     --main: #000000;
@@ -9,46 +10,46 @@
 }
 
 * {
-  transition: all ease-in-out .5s;
+  transition: all ease-in-out 1s; /* Overgang vertraagd om de effecten beter zichtbaar te maken */
 }
 
 /* Stijl voor het speelveld */
 #game-container {
   position: relative;
-  width: 300px;
-  height: 300px;
+  width: 600px; /* Verdubbeld */
+  height: 600px; /* Verdubbeld */
   background-color: var(--main);
-  border: 1px solid #000; /* Voeg een rand toe aan het speelveld */
+  border: 2px solid #000; /* Verdubbeld */
   margin: 0 auto;
-  margin-top: 100px;
+  margin-top: 200px; /* Verdubbeld */
 }
 
 #snake {
   position: absolute;
-  width: 20px;
-  height: 20px;
+  width: 40px; /* Verdubbeld */
+  height: 40px; /* Verdubbeld */
   background-color: rgb(0, 0, 0);
-  transition: none .0s;
+  transition: none 0s; /* Overgang verwijderd */
   border-radius: 50%;
-  width: 10px;
-  height: 10px;
-  margin-top: 3px;
-  margin-left: 3px;
+  width: 20px; /* Verdubbeld */
+  height: 20px; /* Verdubbeld */
+  margin-top: 6px; /* Aangepast voor een betere uitlijning */
+  margin-left: 6px; /* Aangepast voor een betere uitlijning */
 }
 
 .trail {
   position: absolute;
-  width: 20px;
-  height: 20px;
-  background-color: #7cff12; /* Voeg deze regel toe voor blauwe kleur */
-  border: 1px solid #146103; /* Voeg een rand toe om de segmenten te markeren */
-  border-radius: 5px;
+  width: 40px; /* Verdubbeld */
+  height: 40px; /* Verdubbeld */
+  background-color: #7cff12;
+  border: 2px solid #146103; /* Verdubbeld */
+  border-radius: 10px; /* Aangepast voor een betere uitlijning */
 }
 
 #food {
   position: absolute;
-  width: 20px;
-  height: 20px;
+  width: 40px; /* Verdubbeld */
+  height: 40px; /* Verdubbeld */
   background-color: red;
   border-radius: 50%;
 }
@@ -56,58 +57,58 @@
 /* Stijl voor de knoppen */
 .buttons {
   text-align: center;
-  margin-top: 10px;
+  margin-top: 20px; /* Verdubbeld */
 }
 
 button {
-  font-size: 24px;
-  padding: 10px 15px;
-  margin: 0 10px;
+  font-size: 48px; /* Verdubbeld */
+  padding: 20px 30px; /* Verdubbeld */
+  margin: 0 20px; /* Verdubbeld */
   cursor: pointer;
   border: none;
   background-color: #f2f2f2;
-  border-radius: 5px;
+  border-radius: 10px; /* Aangepast voor een betere uitlijning */
   font-family: var(--font);
 }
 
 /* Stijl voor de pauzeknop */
 .pause-button {
   position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 20px;
+  top: 20px; /* Verdubbeld */
+  right: 20px; /* Verdubbeld */
+  font-size: 40px; /* Verdubbeld */
   color: #555;
 }
 
 /* Stijl voor het score-element */
 #score {
   text-align: center;
-  margin-top: 10px;
-  font-size: 18px;
+  margin-top: 20px; /* Verdubbeld */
+  font-size: 36px; /* Verdubbeld */
   font-family: var(--font);
 }
 
 /* Stijl voor de hoogste score */
 #high-score {
   position: absolute;
-    margin-top: -80px; /* Afstand vanaf de bovenkant van de knop */
-    font-size: 16px; /* Aangepaste grootte voor een nette uitlijning */
-    font-family: var(--font);
+  top: 20px; /* Aangepast voor een betere uitlijning */
+  font-size: 32px; /* Verdubbeld */
+  font-family: var(--font);
 }
 
 #button-reset-high-score {
   position: absolute;
-  top: 10px;
+  top: 20px; /* Verdubbeld */
   left: 50%;
   transform: translateX(-50%);
-  margin-top: 5px; /* Afstand vanaf de bovenkant van de knop */
-  font-size: 12px; /* Aangepaste grootte voor een nette uitlijning */
+  margin-top: 10px; /* Verdubbeld */
+  font-size: 24px; /* Verdubbeld */
   color: red;
 }
 
 /* In je CSS-bestand */
 .animated {
-  animation: grow 0.3s ease-in-out;
+  animation: grow 0.6s ease-in-out; /* Verdubbeld */
 }
 
 @keyframes grow {
@@ -115,7 +116,7 @@ button {
     transform: scale(1);
   }
   100% {
-    transform: scale(1.2);
+    transform: scale(1.4); /* Aangepast voor een betere uitlijning */
   }
 }
 
@@ -123,8 +124,8 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  top: 10px;
-  left: 10px;
+  top: 20px; /* Verdubbeld */
+  left: 20px; /* Verdubbeld */
 }
 
 #horizontal-buttons {
@@ -132,15 +133,16 @@ button {
 }
 
 #button-left {
-  margin-right: 40px;
+  margin-right: 80px; /* Verdubbeld */
 }
 
 #button-right {
-  margin-left: 40px;
+  margin-left: 80px; /* Verdubbeld */
 }
 
 button {
-  font-size: 24px;
-  padding: 10px 20px;
-  margin: 5px;
+  font-size: 48px; /* Verdubbeld */
+  padding: 20px 40px; /* Verdubbeld */
+  margin: 10px; /* Verdubbeld */
 }
+

@@ -127,8 +127,8 @@ setTimeout(() => {
       generateFood();
     }
   
-    snakeElement.style.left = snakeX * 20 + 'px';
-    snakeElement.style.top = snakeY * 20 + 'px';
+    snakeElement.style.left = snakeX * 40 + 'px';
+    snakeElement.style.top = snakeY * 40 + 'px';
   
     const trailElements = document.querySelectorAll('.trail');
     for (let i = 0; i < trailElements.length; i++) {
@@ -139,8 +139,8 @@ setTimeout(() => {
       const trailSegment = snakeTrail[i];
       const trailSegmentElement = document.createElement('div');
       trailSegmentElement.className = 'trail';
-      trailSegmentElement.style.left = trailSegment.x * 20 + 'px';
-      trailSegmentElement.style.top = trailSegment.y * 20 + 'px';
+      trailSegmentElement.style.left = trailSegment.x * 40 + 'px';
+      trailSegmentElement.style.top = trailSegment.y * 40 + 'px';
       snakeElement.parentNode.insertBefore(trailSegmentElement, snakeElement);
     }
   
@@ -155,8 +155,8 @@ setTimeout(() => {
 function generateFood() {
   foodX = Math.floor(Math.random() * gridSize);
   foodY = Math.floor(Math.random() * gridSize);
-  foodElement.style.left = foodX * 20 + 'px';
-  foodElement.style.top = foodY * 20 + 'px';
+  foodElement.style.left = foodX * 40 + 'px';
+  foodElement.style.top = foodY * 40 + 'px';
 }
 
 generateFood();
@@ -216,3 +216,18 @@ function resetHighScore() {
   }
 }
 
+let userAgent = navigator.userAgent;
+if (userAgent.match(/iPhone/i)) {
+    let css = 'body {margin-top: 300px;}#button-reset-high-score {top: 200px;}.pause-button {top: 200px;}#high-score {top: 200px;}';
+    let head = document.head || document.getElementsByTagName('head')[0];
+    let style = document.createElement('style');
+
+    style.type = 'text/css';
+    if (style.styleSheet){
+      style.styleSheet.cssText = css;
+    } else {
+      style.appendChild(document.createTextNode(css));
+    }
+
+    head.appendChild(style);
+}
