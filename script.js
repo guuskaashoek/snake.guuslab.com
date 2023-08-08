@@ -22,6 +22,31 @@ let gameInterval;
 let level = 1;
 let gameSpeeds = [200, 150, 100];
 
+  // Voeg event listeners toe voor toetsen en knoppen
+  document.getElementById('button-left').addEventListener('click', () => {
+    console.log('Left button clicked'); // Voeg de console.log toe
+    changeDirection(-1, 0);
+  });
+  document.getElementById('button-right').addEventListener('click', () => {
+    console.log('Right button clicked');
+    changeDirection(1, 0);
+  });
+  
+  document.getElementById('button-up').addEventListener('click', () => {
+    console.log('Up button clicked');
+    changeDirection(0, -1);
+  });
+  
+  document.getElementById('button-down').addEventListener('click', () => {
+    console.log('Down button clicked');
+    changeDirection(0, 1);
+  });
+  
+  document.getElementById('button-pause').addEventListener('click', () => {
+    console.log('Pause button clicked');
+    togglePause();
+  });
+
 document.addEventListener('keydown', (event) => {
   switch (event.key) {
     case 'ArrowUp':
@@ -49,15 +74,7 @@ document.addEventListener('keydown', (event) => {
       console.log('pouse');
       break;
   }
-  // Voeg event listeners toe voor toetsen en knoppen
-document.getElementById('button-left').addEventListener('click', () => changeDirection(-1, 0));
-document.getElementById('button-right').addEventListener('click', () => changeDirection(1, 0));
-document.getElementById('button-up').addEventListener('click', () => changeDirection(0, -1));
-document.getElementById('button-down').addEventListener('click', () => changeDirection(0, 1));
-document.getElementById('button-pause').addEventListener('click', togglePause);
 });
-
-
 
 let highScore = localStorage.getItem('snakeHighScore');
 if (highScore === null) {
@@ -187,3 +204,15 @@ function resetHighScore() {
   localStorage.setItem('snakeHighScore', highScore);
   highScoreElement.textContent = `High Score: ${highScore}`;
 }
+
+function resetHighScore() {
+  const confirmation = confirm('Weet je zeker dat je de high score wilt resetten?');
+
+  if (confirmation) {
+    highScore = 0;
+    localStorage.setItem('snakeHighScore', highScore);
+    highScoreElement.textContent = `High Score: ${highScore}`;
+    alert('High score is gereset!');
+  }
+}
+
