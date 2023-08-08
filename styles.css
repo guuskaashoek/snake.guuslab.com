@@ -97,8 +97,8 @@ button {
 
 #button-reset-high-score {
   position: absolute;
-  bottom: 20px; /* Afstand vanaf de onderkant */
-  left: 100px;
+  top: 10px;
+  left: 50%;
   transform: translateX(-50%);
   margin-top: 5px; /* Afstand vanaf de bovenkant van de knop */
   font-size: 12px; /* Aangepaste grootte voor een nette uitlijning */
