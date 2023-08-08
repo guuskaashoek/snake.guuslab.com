@@ -218,7 +218,7 @@ function resetHighScore() {
 
 let userAgent = navigator.userAgent;
 if (userAgent.match(/iPhone/i)) {
-    let css = 'body {margin-top: 300px;}#button-reset-high-score {top: 200px;}.pause-button {top: 200px;}#high-score {top: 200px;}body {overflow: hidden;}';
+    let css = 'body {margin-top: 300px;}#button-reset-high-score {top: 150px;}.pause-button {top: 150px;}#high-score {top: 200px;}body {overflow: hidden;}';
     let head = document.head || document.getElementsByTagName('head')[0];
     let style = document.createElement('style');
 
