@@ -154,3 +154,29 @@ button {
   border-radius: 5px;
   cursor: pointer;
 }
+
+#button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  top: 10px;
+  left: 10px;
+}
+
+#horizontal-buttons {
+  display: flex;
+}
+
+#button-left {
+  margin-right: 40px;
+}
+
+#button-right {
+  margin-left: 40px;
+}
+
+button {
+  font-size: 24px;
+  padding: 10px 20px;
+  margin: 5px;
+}
