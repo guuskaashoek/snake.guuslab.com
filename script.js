@@ -1,6 +1,9 @@
 const snakeElement = document.getElementById('snake');
 const foodElement = document.getElementById('food');
 const scoreElement = document.getElementById('score');
+const highScoreElement = document.getElementById('high-score');
+const gameOverScreen = document.getElementById('game-over-screen');
+const gameOverScore = document.getElementById('game-over-score');
 
 let snakeX = 2;
 let snakeY = 2;
@@ -10,33 +13,58 @@ let snakeLength = 1;
 let snakeTrail = [{ x: snakeX, y: snakeY }];
 let directionX = 0;
 let directionY = 0;
-let gridSize = 15; // Aangepaste gridgrootte voor betere zichtbaarheid
+let gridSize = 15;
 
 let score = 0;
-let paused = false; // Definieer de variabele 'paused'
+let paused = false;
+let gameInterval;
 
-let gameInterval; // Variabele om de game loop bij te houden
+let level = 1;
+let gameSpeeds = [200, 150, 100];
 
 document.addEventListener('keydown', (event) => {
   switch (event.key) {
     case 'ArrowUp':
       directionX = 0;
       directionY = -1;
+      console.log('up');
       break;
     case 'ArrowDown':
       directionX = 0;
       directionY = 1;
+      console.log('down');
       break;
     case 'ArrowLeft':
       directionX = -1;
       directionY = 0;
+      console.log('left');
       break;
     case 'ArrowRight':
       directionX = 1;
       directionY = 0;
+      console.log('right');
+      break;
+    case ' ':
+      togglePause();
+      console.log('pouse');
       break;
   }
+  // Voeg event listeners toe voor toetsen en knoppen
+document.getElementById('button-left').addEventListener('click', () => changeDirection(-1, 0));
+document.getElementById('button-right').addEventListener('click', () => changeDirection(1, 0));
+document.getElementById('button-up').addEventListener('click', () => changeDirection(0, -1));
+document.getElementById('button-down').addEventListener('click', () => changeDirection(0, 1));
+document.getElementById('button-pause').addEventListener('click', togglePause);
 });
+
+
+
+let highScore = localStorage.getItem('snakeHighScore');
+if (highScore === null) {
+  highScore = 0;
+  console.log(`New High Score!: ${highScore}`);
+}
+highScoreElement.textContent = `High Score: ${highScore}`;
 
 
 function updateGameArea() {
@@ -73,7 +101,12 @@ function updateGameArea() {
   
     if (snakeX === foodX && snakeY === foodY) {
       score++;
-      snakeLength++;
+      // Voeg deze code toe wanneer de slang groeit
+snakeLength++;
+snakeElement.classList.add('animated');
+setTimeout(() => {
+  snakeElement.classList.remove('animated');
+}, 300);
       generateFood();
     }
   
@@ -95,9 +128,13 @@ function updateGameArea() {
     }
   
     scoreElement.textContent = score;
+    if (score > highScore) {
+      highScore = score;
+      highScoreElement.textContent = `High Score: ${highScore}`;
+      localStorage.setItem('snakeHighScore', highScore);
+    }
   }
   
-
 function generateFood() {
   foodX = Math.floor(Math.random() * gridSize);
   foodY = Math.floor(Math.random() * gridSize);
@@ -108,23 +145,13 @@ function generateFood() {
 generateFood();
 setInterval(updateGameArea, 200);
 
-// ... je bestaande code ...
-
-// Voeg event listeners toe voor toetsen en knoppen
-window.addEventListener('keydown', handleKeyPress);
-document.getElementById('button-left').addEventListener('click', () => changeDirection(-1, 0));
-document.getElementById('button-right').addEventListener('click', () => changeDirection(1, 0));
-document.getElementById('button-up').addEventListener('click', () => changeDirection(0, -1));
-document.getElementById('button-down').addEventListener('click', () => changeDirection(0, 1));
-document.getElementById('button-pause').addEventListener('click', togglePause);
-
 // Functie om de richting van de slang te veranderen
 function changeDirection(newDirectionX, newDirectionY) {
   if (paused) return;
-  if (newDirectionX === -directionX || newDirectionY === -directionY) return;
-
-  directionX = newDirectionX;
-  directionY = newDirectionY;
+  if (Math.abs(newDirectionX) !== Math.abs(directionX) || Math.abs(newDirectionY) !== Math.abs(directionY)) {
+    directionX = newDirectionX;
+    directionY = newDirectionY;
+  }
 }
 
 // Functie om het spel te pauzeren of hervatten
@@ -147,30 +174,16 @@ function togglePause() {
       }
   
       // Start de game loop opnieuw als het spel wordt hervat
-      gameInterval = setInterval(updateGameArea, 10000000);
+      gameInterval = setInterval(updateGameArea, 10000);
     }
   }
 
-// Functie om toetsaanslagen te verwerken
-function handleKeyPress(event) {
-  const key = event.key.toLowerCase();
-  switch (key) {
-    case 'arrowleft':
-      changeDirection(-1, 0);
-      break;
-    case 'arrowright':
-      changeDirection(1, 0);
-      break;
-    case 'arrowup':
-      changeDirection(0, -1);
-      break;
-    case 'arrowdown':
-      changeDirection(0, 1);
-      break;
-    case ' ':
-      togglePause();
-      break;
-  }
-}
+// Event listener voor het resetten van de hoogste score
+document.getElementById('button-reset-high-score').addEventListener('click', resetHighScore);
 
-// ... de rest van je code ...
+// Functie om de hoogste score te resetten
+function resetHighScore() {
+  highScore = 0;
+  localStorage.setItem('snakeHighScore', highScore);
+  highScoreElement.textContent = `High Score: ${highScore}`;
+}

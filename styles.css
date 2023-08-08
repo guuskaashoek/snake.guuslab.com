@@ -1,5 +1,6 @@
 :root {
   --main: #ffffff;
+  --font: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 @media (prefers-color-scheme: dark) {
   :root {
@@ -19,21 +20,29 @@
   background-color: var(--main);
   border: 1px solid #000; /* Voeg een rand toe aan het speelveld */
   margin: 0 auto;
+  margin-top: 30px;
 }
 
 #snake {
   position: absolute;
   width: 20px;
   height: 20px;
-  background-color: rgba(0, 128, 0, 0);
+  background-color: rgb(0, 0, 0);
+  transition: none .0s;
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  margin-top: 3px;
+  margin-left: 3px;
 }
 
 .trail {
   position: absolute;
   width: 20px;
   height: 20px;
-  background-color: blue; /* Voeg deze regel toe voor blauwe kleur */
-  border: 1px solid black; /* Voeg een rand toe om de segmenten te markeren */
+  background-color: rgb(124, 255, 18); /* Voeg deze regel toe voor blauwe kleur */
+  border: 1px solid rgb(20, 97, 3); /* Voeg een rand toe om de segmenten te markeren */
+  border-radius: 5px;
 }
 
 #food {
@@ -41,6 +50,7 @@
   width: 20px;
   height: 20px;
   background-color: red;
+  border-radius: 50%;
 }
 
 /* Stijl voor de knoppen */
@@ -57,6 +67,7 @@ button {
   border: none;
   background-color: #f2f2f2;
   border-radius: 5px;
+  font-family: var(--font);
 }
 
 /* Stijl voor de pauzeknop */
@@ -72,4 +83,72 @@ button {
   text-align: center;
   margin-top: 10px;
   font-size: 18px;
+  font-family: var(--font);
+}
+
+/* Stijl voor de hoogste score */
+#high-score {
+  position: absolute;
+    margin-top: 10px; /* Afstand vanaf de bovenkant van de knop */
+    font-size: 16px; /* Aangepaste grootte voor een nette uitlijning */
+    font-family: var(--font);
+}
+
+#button-reset-high-score {
+  position: absolute;
+  bottom: 20px; /* Afstand vanaf de onderkant */
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 10px; /* Afstand vanaf de bovenkant van de knop */
+  font-size: 16px; /* Aangepaste grootte voor een nette uitlijning */
+}
+
+/* In je CSS-bestand */
+.animated {
+  animation: grow 0.3s ease-in-out;
+}
+
+@keyframes grow {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.2);
+  }
+}
+
+/* Stijl voor het "Game Over" scherm */
+.game-over-screen {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(123, 123, 123, 0.5);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Stijl voor "Game Over" scherm inhoud */
+.game-over-screen h1 {
+  font-size: 36px;
+  color: white;
+}
+
+.game-over-screen p {
+  font-size: 18px;
+  color: white;
+  margin-top: 10px;
+}
+
+.game-over-screen button {
+  margin-top: 20px;
+  font-size: 24px;
+  padding: 10px 20px;
+  border: none;
+  background-color: #47a852;
+  border-radius: 5px;
+  cursor: pointer;
 }
