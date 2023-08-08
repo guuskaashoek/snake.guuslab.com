@@ -40,8 +40,8 @@
   position: absolute;
   width: 20px;
   height: 20px;
-  background-color: rgb(124, 255, 18); /* Voeg deze regel toe voor blauwe kleur */
-  border: 1px solid rgb(20, 97, 3); /* Voeg een rand toe om de segmenten te markeren */
+  background-color: #7cff12; /* Voeg deze regel toe voor blauwe kleur */
+  border: 1px solid #146103; /* Voeg een rand toe om de segmenten te markeren */
   border-radius: 5px;
 }
 

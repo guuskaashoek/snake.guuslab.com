@@ -1,0 +1,14 @@
+{
+       "display": "standalone",
+       "short_name": "guuslab",
+       "icons":[
+              {
+                     "src":"120x120.png",
+                     "type": "image/png",
+                     "size": "120x120"
+              }
+       ],
+       "start_url": "/index.html",
+       "background_color": "#333",
+       "scope": "/"
+}
