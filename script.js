@@ -19,9 +19,6 @@ let score = 0;
 let paused = false;
 let gameInterval;
 
-let level = 1;
-let gameSpeeds = [200, 150, 100];
-
   // Voeg event listeners toe voor toetsen en knoppen
   document.getElementById('button-left').addEventListener('click', () => {
     console.log('Left button clicked'); // Voeg de console.log toe
@@ -160,7 +157,7 @@ function generateFood() {
 }
 
 generateFood();
-setInterval(updateGameArea, 200);
+setInterval(updateGameArea, 275);
 
 // Functie om de richting van de slang te veranderen
 function changeDirection(newDirectionX, newDirectionY) {
@@ -212,7 +209,7 @@ function resetHighScore() {
     highScore = 0;
     localStorage.setItem('snakeHighScore', highScore);
     highScoreElement.textContent = `High Score: ${highScore}`;
-    alert('High score is gereset!');
+    alert('High score is gereset!!!!!');
   }
 }
 

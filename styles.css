@@ -116,7 +116,10 @@ button {
     transform: scale(1);
   }
   100% {
-    transform: scale(1.4); /* Aangepast voor een betere uitlijning */
+    transform: scale(1.5); /* Aangepast voor een betere uitlijning */
+  }
+  0% {
+    transform: scale(1);
   }
 }
 
